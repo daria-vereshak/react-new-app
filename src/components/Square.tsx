@@ -1,16 +1,17 @@
 import React, {useState} from "react";
 
-function Square () {
-  const [value, setValue] = useState<null|string>(null);
+type onSquareClick = (event: React.MouseEvent<HTMLButtonElement>) => void;
 
-  function handleClick() {
-    setValue('X');
-  }
+interface SquareProps {
+  value: string | null,
+  onClick: onSquareClick
+}
 
+function Square ({value, onClick}:SquareProps) {
   return (
     <button 
       className="square"
-      onClick={handleClick}
+      onClick={onClick}
     >
       {value}
     </button>
