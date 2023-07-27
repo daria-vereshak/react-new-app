@@ -5,19 +5,19 @@ function Board () {
   return (
     <>
       <div className="board-row">
-        <Square id={1}/>
-        <Square id={2}/>
-        <Square id={3}/>
+        <Square />
+        <Square />
+        <Square />
       </div>
       <div className="board-row">
-        <Square id={4}/>
-        <Square id={5}/>
-        <Square id={6}/>
+        <Square />
+        <Square />
+        <Square />
       </div>
       <div className="board-row">
-        <Square id={7}/>
-        <Square id={8}/>
-        <Square id={9}/>
+        <Square />
+        <Square />
+        <Square />
       </div>
     </>
   )

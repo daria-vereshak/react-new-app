@@ -1,13 +1,20 @@
-import React from "react";
+import React, {useState} from "react";
 
-interface SquareProps {
-  id: number
-}
+function Square () {
+  const [value, setValue] = useState<null|string>(null);
 
-function Square (props: SquareProps) {
+  function handleClick() {
+    setValue('X');
+  }
+
   return (
-    <button className="square">{props.id}</button>
-  )
+    <button 
+      className="square"
+      onClick={handleClick}
+    >
+      {value}
+    </button>
+  );
 }
 
 export default Square;
