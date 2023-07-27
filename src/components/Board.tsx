@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import Square from "./Square";
+import { useTranslation } from "react-i18next";
 
 interface BoardProps {
   xIsNext: boolean,
@@ -8,6 +9,7 @@ interface BoardProps {
 }
 
 function Board ({xIsNext, squares, onPlay}:BoardProps) {
+  const {t, i18n} = useTranslation();
 
   function calculateWinner(squares:null[]|string[]):null | string {
     const lines = [
@@ -45,9 +47,9 @@ function Board ({xIsNext, squares, onPlay}:BoardProps) {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = "Winner: " + winner;
+    status = t("winner") + winner;
   } else {
-    status = "Next player: " + (xIsNext ? "X" : "O");
+    status = t("nextPlayer") + (xIsNext ? "X" : "O");
   }
 
   return (
