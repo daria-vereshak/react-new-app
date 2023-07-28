@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import Board from "./Board";
 import { useTranslation } from "react-i18next";
+import '../elf-state';
 
 function Game() {
   const [history, setHistory] = useState<any>([Array(9).fill(null)]);
