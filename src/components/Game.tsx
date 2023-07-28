@@ -1,21 +1,18 @@
 import React, {useState} from "react";
 import Board from "./Board";
 import { useTranslation } from "react-i18next";
-import '../elf-state';
-
+import { useObservable } from '@ngneat/use-observable';
+import { getCurrentMove, getHistory, setHistory, setCurrentMove, history$ } from "../app/game.repository";
 function Game() {
-  const [history, setHistory] = useState<any>([Array(9).fill(null)]);
-  const [currentMove, setCurrentMove] = useState<number>(0);
   const {t, i18n} = useTranslation();
-  const xIsNext = currentMove % 2 === 0;
-  const currentSquares = history[currentMove];
-
+  const xIsNext = getCurrentMove() % 2 === 0;
+  const [currentSquares] = useObservable(history$);
   const changeLanguage = (language:string) => {
     i18n.changeLanguage(language);
   }
 
   function handlePlay(nextSquares: null[] | string[]) {
-    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+    const nextHistory = [...getHistory().slice(0, getCurrentMove() + 1), nextSquares];
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length - 1);
   }
@@ -24,7 +21,7 @@ function Game() {
     setCurrentMove(nextMove);
   }
 
-  const moves = history.map((squares:null[] | string[], move: number) => {
+  const moves = getHistory().map((squares:null[] | string[], move: number) => {
     let description;
     if (move > 0) {
       description = t("toMove") + move;
